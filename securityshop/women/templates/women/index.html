@@ -8,6 +8,13 @@
         <div class="uk-card uk-card-default uk-card-body uk-width-1@m" style="margin-bottom: 15px">
             <span> Категория: {{ post.cat }}</span> <br>
             <span>{{post.time_update|date:"d-m-Y" }}</span>
+
+                {% if post.photo %}
+                    <div style="float: left">
+                        <img src="{{ post.photo.url }}" alt="">
+                    </div>
+                {% endif %}
+
             <h3 class="uk-card-title">{{ post.title }}</h3>
             <p>{{ post.content|linebreaks|truncatewords:50 }}</p>
             <a href="{{ post.get_absolute_url }}"><button class="uk-button uk-button-primary">Читать далее</button></a>
