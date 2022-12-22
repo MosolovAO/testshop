@@ -11,13 +11,15 @@ menu = [
 ]
 
 
-
 def index(request):
     posts = Women.objects.all()
+    categories = Category.objects.all()
     context = {
         'posts': posts,
+        'categories': categories,
         'menu': menu,
         'title': 'Главная страница',
+        'category_selected': 0,
     }
     return render(request, 'women/index.html', context=context)
 
@@ -26,14 +28,21 @@ def about(request):
     return render(request, 'women/about.html', {'menu': menu, 'title': 'О сайте'})
 
 
-def categories(request, catid):
-    if request.GET:
-        print(request.GET)
-    return HttpResponse(f"<h1>Статьи по категориям</h1> <p> {catid} </p>")
-
-
 def show_post(request, post_id):
     return HttpResponse(f"<h2>Страница поста №{post_id}</h2>")
+
+
+def show_category(request, cat_id):
+    posts = Women.objects.filter(cat_id=cat_id)
+    categories = Category.objects.all()
+    context = {
+        'posts': posts,
+        'categories': categories,
+        'menu': menu,
+        'title': 'Главная страница',
+        'category_selected': cat_id,
+    }
+    return render(request, 'women/index.html', context=context)
 
 
 def add_page(request):

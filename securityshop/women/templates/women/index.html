@@ -2,10 +2,12 @@
 
 {% block content %}
 
-    <h2 class="uk-heading-line"><span>Главный блок для страницы main 2</span></h2>
+    <h2 class="uk-heading-line"><span>Главный блок для страницы</span></h2>
 
     {% for post in posts %}
         <div class="uk-card uk-card-default uk-card-body uk-width-1@m" style="margin-bottom: 15px">
+            <span> Категория: {{ post.cat }}</span> <br>
+            <span>{{post.time_update|date:"d-m-Y" }}</span>
             <h3 class="uk-card-title">{{ post.title }}</h3>
             <p>{{ post.content|linebreaks|truncatewords:50 }}</p>
             <a href="{{ post.get_absolute_url }}"><button class="uk-button uk-button-primary">Читать далее</button></a>
