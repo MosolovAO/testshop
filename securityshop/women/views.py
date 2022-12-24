@@ -13,10 +13,8 @@ menu = [
 
 def index(request):
     posts = Women.objects.all()
-    categories = Category.objects.all()
     context = {
         'posts': posts,
-        'categories': categories,
         'menu': menu,
         'title': 'Главная страница',
         'category_selected': 0,
@@ -34,10 +32,8 @@ def show_post(request, post_id):
 
 def show_category(request, cat_id):
     posts = Women.objects.filter(cat_id=cat_id)
-    categories = Category.objects.all()
     context = {
         'posts': posts,
-        'categories': categories,
         'menu': menu,
         'title': 'Главная страница',
         'category_selected': cat_id,
