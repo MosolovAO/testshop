@@ -6,42 +6,43 @@
     <meta charset="UTF-8">
     <title> {{ title }}</title>
     <link type="text/css" rel="stylesheet" href="{% static 'women/css/style.css' %}">
-    <link type="text/css" rel="stylesheet" href="{% static 'women/css/uikit.min.css' %}">
-    <script src="{% static 'women/js/uikit.min.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'women/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'women/css/bootstrap-reboot.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'women/css/bootstrap-grid.min.css' %}">
+    <script src="{% static 'women/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'women/js/bootstrap.bundle.min.js' %}"></script>
 </head>
 <body>
-
-<nav class="uk-navbar-container" uk-navbar>
-    <div class="uk-navbar-left" style="padding: 0 30px">
-
-        <ul class="uk-navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            {% block main_menu %}
-                {% for item in menu %}
-                    <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
-                {% endfor %}
-            {% endblock main_menu %}
-        </ul>
-
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12">
+            {% show_main_menu %}
+        </div>
     </div>
-</nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="main__content" style="padding: 20px">
+                {% block content %}
+                {% endblock content %}
+            </div>
 
-<div uk-grid style="padding: 30px">
-    <div class="uk-width-3-4">
-        {% block content %}
-        {% endblock content %}
-    </div>
-    <div class="uk-width-1-4">
-        <h3>Категории</h3>
-        <ul>
-            {% if category_selected == 0 %}
-                <li>Все категории</li>
-            {% else %}
-                <li><a href="{% url 'home' %}">Все категории</a></li>
-            {% endif %}
-            {{ category_selected }}
-            {% show_categories 'name' category_selected %}
-        </ul>
+        </div>
+        <div class="col-xl-4">
+            <div class="sidebar__right" style="padding: 20px">
+                <h3>Категории</h3>
+                <ul>
+                    {% if category_selected == 0 %}
+                        <li>Все категории</li>
+                    {% else %}
+                        <li><a href="{% url 'home' %}">Все категории</a></li>
+                    {% endif %}
+                    {% show_categories 'name' category_selected %}
+                </ul>
+            </div>
+
+        </div>
     </div>
 </div>
 
